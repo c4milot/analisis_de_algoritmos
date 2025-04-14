@@ -19,10 +19,7 @@ double minDistCentro(std::vector<std::pair<int, int>> &centro, double d) {
     for (size_t i = 0; i < centro.size(); i++) {
         for (size_t j = i + 1; j < centro.size() && (centro[j].second - centro[i].second) < minDist; j++) {
             double nuevaDist = calculateDistance(centro[i], centro[j]);
-            // Si la distancia es menor que la minima, actualizar
-            if (nuevaDist < minDist) {
-                minDist = nuevaDist;
-            }
+            minDist = std::min(minDist, nuevaDist);
         }
     }
 
@@ -32,7 +29,14 @@ double minDistCentro(std::vector<std::pair<int, int>> &centro, double d) {
 double minDist(std::vector<std::pair<int, int>> &dots, int left, int right) {
     // Caso base: si hay 2 o menos puntos, usamos fuerza bruta
     if (right - left <= 3) {
-        return minDist_BF(dots);
+        double minDist = std::numeric_limits<double>::max();
+        for (int i = left; i < right; i++) {
+            for (int j = i + 1; j < right; j++) {
+                double distance = calculateDistance(dots[i], dots[j]);
+                minDist = std::min(minDist, distance);
+            }
+        }
+        return minDist;
     }
 
     // Dividir el conjunto de puntos en dos mitades

@@ -18,7 +18,8 @@
 #include <vector>
 
 #include "utils.cpp"
-
+#include "C:\Users\Notebook\Desktop\2025S1\Analisis de Algoritmos\tarea\analisis_de_algoritmos\Tarea 1\codigos\brute_force.cpp"
+#include "C:\Users\Notebook\Desktop\2025S1\Analisis de Algoritmos\tarea\analisis_de_algoritmos\Tarea 1\codigos\divide_and_conquer.cpp"
 // Include to be tested files here
 
 int main(int argc, char *argv[])
@@ -41,7 +42,7 @@ int main(int argc, char *argv[])
     // Set up random number generation
     std::random_device rd;
     std::mt19937_64 rng(rd());
-    std::uniform_int_distribution<std::int64_t> u_distr; // change depending on app
+    std::uniform_int_distribution<std::int64_t> u_distr(0,99); // change depending on app
 
     // File to write time data
     std::ofstream time_data;
@@ -56,7 +57,10 @@ int main(int argc, char *argv[])
         time_stdev = 0;
 
         // Test configuration goes here
-
+        std::vector<std::pair<int, int>> points(n);
+        for (auto &point : points) {
+            point = {u_distr(rng), u_distr(rng)};
+        }
         // Run to compute elapsed time
         for (i = 0; i < runs; i++) {
             // Remember to change total depending on step type
@@ -64,6 +68,8 @@ int main(int argc, char *argv[])
 
             begin_time = std::chrono::high_resolution_clock::now();
             // Function to test goes here
+            //double result = minDist_BF(points);
+            double result = minDist_DQ(points);
             end_time = std::chrono::high_resolution_clock::now();
 
             elapsed_time = end_time - begin_time;
