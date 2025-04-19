@@ -18,8 +18,10 @@
 #include <vector>
 
 #include "utils.cpp"
-#include "C:\Users\Notebook\Desktop\2025S1\Analisis de Algoritmos\tarea\analisis_de_algoritmos\Tarea 1\codigos\brute_force.cpp"
-#include "C:\Users\Notebook\Desktop\2025S1\Analisis de Algoritmos\tarea\analisis_de_algoritmos\Tarea 1\codigos\divide_and_conquer.cpp"
+#include "..\Tarea 1\codigos\brute_force.cpp"
+#include "..\Tarea 1\codigos\divide_and_conquer.cpp"
+#include "..\Tarea 1\codigos\brute_force_mejorado.cpp"
+#include "..\Tarea 1\codigos\divide_and_conquer_mejorado.cpp"
 // Include to be tested files here
 
 int main(int argc, char *argv[])
@@ -69,7 +71,10 @@ int main(int argc, char *argv[])
             begin_time = std::chrono::high_resolution_clock::now();
             // Function to test goes here
             //double result = minDist_BF(points);
-            double result = minDist_DQ(points);
+            //double result = minDist_DQ(points);
+            //double result = minSquareDist_BF(points);
+            double result = minDist_DQ_Mejorado(points);
+            
             end_time = std::chrono::high_resolution_clock::now();
 
             elapsed_time = end_time - begin_time;
